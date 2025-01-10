@@ -1,13 +1,14 @@
 #include <stdio.h>
-
+#include <termios.h>
 // functions from Event Listener
 char ReadKey();
 
 // terminal config funcs
 void enable_raw_mode();
 void disable_raw_mode();
-
+// vars from term init
 int main() {
+
   enable_raw_mode();
 
   char c;
