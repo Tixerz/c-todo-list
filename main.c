@@ -16,13 +16,14 @@ void disable_raw_mode();
 
 void menu_key(char *buff) {
   while(1) {
-    if(input(buff) == 1) {
+    int k = input(buff);
+    if(k == 1) {
       full_display();
       select_focus();
-    }else if(input(buff) == 0) {
+    }else if(k == 0) {
       full_display();
       select_status();
-    }else if(input(buff) == -1) break;
+    }else if(k == -1) break;
   }
 }
 
