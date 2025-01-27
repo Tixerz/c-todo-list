@@ -1,7 +1,9 @@
+#include <stdio.h>
 #include <termios.h>
 #include <unistd.h>
 struct termios original_term;
 void enable_raw_mode() {
+  printf("\033[?25l\033[2J");
   tcgetattr(STDIN_FILENO, &original_term);
   struct termios raw;
   tcgetattr(STDIN_FILENO, &raw);
@@ -21,4 +23,8 @@ void enable_raw_mode() {
   tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw);
 }
 
-void disable_raw_mode() { tcsetattr(STDIN_FILENO, TCSAFLUSH, &original_term); }
+void disable_raw_mode() {
+  printf("\033[?25h");
+  tcsetattr(STDIN_FILENO, TCSAFLUSH, &original_term);
+
+}
