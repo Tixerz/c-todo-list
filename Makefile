@@ -13,6 +13,6 @@ all : term_init.c main.c Event_listener.c ./display/blit.c ./display/comps/displ
 	echo "==> compiling display_main_menu.c ..."
 	gcc -c ./display/comps/display_main_menu.c -o display_main_menu.o
 	echo "==> linking object files ..."
-	gcc main.o init.o listen.o  display_main_menu.o blit.o -o output
+	gcc main.o init.o listen.o  display_main_menu.o blit.o modules/runmod.c modules/mod-boxtest/box.c -o output
 	echo "==> removing dependencies ..."
 	rm main.o init.o listen.o blit.o display_main_menu.o

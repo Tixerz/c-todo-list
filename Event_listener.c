@@ -23,5 +23,6 @@ int input(char *buff) {
 
   if (buff[0] == 'f') return -1;
   else if(buff[0] == 27) return detectArrow(buff);
+  else if(buff[0] ==  10) return 3;
   return -2;
 }

@@ -24,7 +24,7 @@ void enable_raw_mode() {
 }
 
 void disable_raw_mode() {
-  printf("\033[?25h");
+  printf("\033[?25h\033[55;0H");
   tcsetattr(STDIN_FILENO, TCSAFLUSH, &original_term);
 
 }
