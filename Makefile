@@ -1,7 +1,7 @@
 all:
 	echo "error : listen.o file doesnt exist."
 all : term_init.c main.c Event_listener.c ./display/blit.c ./display/comps/display_main_menu.c
-	echo "==> compiling Evenet_listener.c ..."
+	echo "==> compiling Event_listener.c ..."
 	gcc -c Event_listener.c -o listen.o
 	echo "==> compiling term_init.c ... "
 	gcc -c term_init.c -o init.o
@@ -12,7 +12,9 @@ all : term_init.c main.c Event_listener.c ./display/blit.c ./display/comps/displ
 	gcc -c ./display/blit.c -o blit.o
 	echo "==> compiling display_main_menu.c ..."
 	gcc -c ./display/comps/display_main_menu.c -o display_main_menu.o
+	echo "==> compiling runmod.c ..."
+	gcc -c ./modules/runmod.c -o runmod.o
 	echo "==> linking object files ..."
-	gcc main.o init.o listen.o  display_main_menu.o blit.o modules/runmod.c modules/mod-boxtest/box.c -o output
+	gcc main.o init.o listen.o  display_main_menu.o blit.o runmod.o -o output
 	echo "==> removing dependencies ..."
-	rm main.o init.o listen.o blit.o display_main_menu.o
+	rm main.o init.o listen.o blit.o display_main_menu.o runmod.o

@@ -14,16 +14,12 @@ void full_display() {
       pull_data("./config/display_templates/focus_button.conf", focus_button);
   char **status_button =
       pull_data("./config/display_templates/status_button.conf", status_button);
-  char **test_button =
-      pull_data("./config/display_templates/test_button.conf", test_button);
   blit(10, 10, 5, menu);
   blit(16, 20, 1, focus_button);
   blit(19, 20, 1, status_button);
-  blit(22, 20, 1, test_button);
   free_data(menu, 5);
   free_data(status_button, 1);
   free_data(focus_button, 1);
-  free_data(test_button, 1);
 }
 void print_description(char* string) {
     char *copy = malloc(126);
@@ -68,19 +64,6 @@ void select_status() {
   printf("\033[0;37m");
   free_data(status_button, 1);
 }
-
-void select_test() {
-  printf("\033[0;36m");
-  char **test_button =
-      pull_data("./config/display_templates/test_button.conf", test_button);
-  test_button[0][4] = '>';
-  blit(22, 20, 1, test_button);
-  print_description("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttest c code");
-  printf("\033[0;37m");
-  free_data(test_button, 1);
-
-}
-
 
 
 

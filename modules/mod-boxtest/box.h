@@ -1,1 +1,0 @@
-void box_entry();
