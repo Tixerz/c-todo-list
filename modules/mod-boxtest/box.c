@@ -11,8 +11,8 @@ void box_entry() {
    struct winsize win;
    ioctl(STDOUT_FILENO, TIOCGWINSZ, &win);
    char **msgbox = pull_data("./modules/mod-boxtest/messagebox.conf", msgbox);
-   blit(win.ws_row / 2, (win.ws_col / 2) - strlen(msgbox[0]), 4, msgbox);
-   free_data(msgbox, 4); 
+   blit((win.ws_row / 2) - (8 / 2), (win.ws_col / 2) - (strlen(msgbox[0]) / 2), 8, msgbox);
+   free_data(msgbox, 8); 
    ReadKey();
 
 }

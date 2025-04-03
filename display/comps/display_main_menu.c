@@ -1,7 +1,7 @@
+#include <string.h>
+#include <stdlib.h>
 #include <stdio.h>
-#define DESC_LEN 55
-#define DESC_X 40
-#define DESC_Y 12
+
 char **pull_data(char *path, char **buff);
 void blit(int row, int col, int size, char **buff);
 void free_data(char **buff, int size);
@@ -26,10 +26,25 @@ void full_display() {
   free_data(test_button, 1);
 }
 void print_description(char* string) {
-    char **ptr = &string;
+    char *copy = malloc(126);
+    memcpy(copy, string, 123);
+    if (strlen(string) > 123) {
+	copy[123] = 0;
+	strcat(copy, "...");
+    }
+    for (int i=0; copy[i] != 0; i++) {   // preventing from broking lines
+        if (copy[i] < ' ') {             // ascii codes lower than whitespace are nonprintble
+	    copy[i] = 0;
+	    char* temp = copy + i;
+	    for (int j=0; temp[j] < ' '; temp++) {}
+	    strcat(copy, temp);
+	}
+    }
+    char **ptr = &copy;
     printf("\033[15;66H\033[38;5;243mdescription-----------------------------------\n");
     printf("\033[38;5;15m");
     blit(14, 33, 1, ptr);
+    free(copy);
 }
 
 
@@ -60,7 +75,7 @@ void select_test() {
       pull_data("./config/display_templates/test_button.conf", test_button);
   test_button[0][4] = '>';
   blit(22, 20, 1, test_button);
-  print_description("test c code");
+  print_description("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttest c code");
   printf("\033[0;37m");
   free_data(test_button, 1);
 

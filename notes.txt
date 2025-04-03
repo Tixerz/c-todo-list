@@ -1,0 +1,1 @@
+i'll make a text based window generator in next commit
